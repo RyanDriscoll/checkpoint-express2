@@ -122,7 +122,7 @@ describe('The `Article` model', function () {
        *
        * http://docs.sequelizejs.com/en/v3/docs/models-definition/#defining-as-part-of-the-model-options
        */
-      xit('evaluates to the first 23 characters of the `content` appended with "..."', function () {
+      it('evaluates to the first 23 characters of the `content` appended with "..."', function () {
 
         expect(article.snippet).to.equal('The South African cliff...');
 
@@ -135,7 +135,7 @@ describe('The `Article` model', function () {
       });
 
       // This is mostly to avoid a corner case seen during `Model.update`.
-      xit('returns empty string for missing `content`', function(){
+      it('returns empty string for missing `content`', function(){
 
         article.content = undefined;
 
@@ -155,7 +155,7 @@ describe('The `Article` model', function () {
        *
        * http://docs.sequelizejs.com/en/v3/docs/models-definition/#expansion-of-models
        */
-      xit('truncates the `content`', function () {
+      it('truncates the `content`', function () {
 
         expect(article.content).to.equal(fullText);
 
@@ -164,7 +164,7 @@ describe('The `Article` model', function () {
 
       });
 
-      xit('accepts any length', function () {
+      it('accepts any length', function () {
 
         expect(article.content).to.equal(fullText);
 
@@ -174,7 +174,7 @@ describe('The `Article` model', function () {
 
       });
 
-      xit('does not save the instance once truncated', function() {
+      it('does not save the instance once truncated', function() {
 
         expect(article.content).to.equal(fullText);
 
@@ -209,7 +209,7 @@ describe('The `Article` model', function () {
         return Promise.all([...otherArticles, article.save()]);
       });
 
-      xit('finds one specific article by its `title`', function () {
+      it('finds one specific article by its `title`', function () {
 
         return Article.findByTitle('Migratory Birds')
         .then(function (foundArticle) {
@@ -232,7 +232,7 @@ describe('The `Article` model', function () {
      * http://docs.sequelizejs.com/en/v3/docs/associations/#belongsto
      */
 
-    xit("belongs to a user, who is stored as the article's `author`", function() {
+    it("belongs to a user, who is stored as the article's `author`", function() {
 
       var creatingUser = User.create({ name: 'Alatar the Blue'});
       var creatingArticle = Article.create({
@@ -276,7 +276,7 @@ describe('The `Article` model', function () {
       });
     });
 
-    xit('is originally 0, even if not explicitly set', function() {
+    it('is originally 0, even if not explicitly set', function() {
 
       return Article.findOne({where: {title: 'Biological Immortality'}})
       .then(function(foundArticle) {
@@ -285,7 +285,7 @@ describe('The `Article` model', function () {
 
     });
 
-    xit('increments by 1 every time the article is updated', function() {
+    it('increments by 1 every time the article is updated', function() {
 
       return Article.findOne({where: {title: 'Biological Immortality'}})
       .then(function(foundArticle) {
